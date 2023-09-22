@@ -1,12 +1,16 @@
 package examen2p2_lloydcooperrr;
 
+import com.toedter.calendar.JDateChooser;
 import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 public class frameMain extends javax.swing.JFrame {
     
     private ArrayList <Cliente> clientes = new ArrayList();
     private ArrayList <Artista> artistas = new ArrayList(); 
+    private ArrayList <Lanzamiento> lanzamientos = new ArrayList(); 
     
     public frameMain() {
         initComponents();
@@ -22,7 +26,24 @@ public class frameMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
+        dialogArtistas = new javax.swing.JDialog();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        btnCrearLanzamiento = new javax.swing.JButton();
+        tfTituloLanzamiento = new javax.swing.JTextField();
+        dateChooser = new com.toedter.calendar.JDateChooser();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        btnModificarLanzamiento = new javax.swing.JButton();
+        tfNuevoTituloLanzamiento = new javax.swing.JTextField();
+        dateChooserModify = new com.toedter.calendar.JDateChooser();
+        cbLanzamientos = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
         dialogRegister = new javax.swing.JDialog();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -43,6 +64,7 @@ public class frameMain extends javax.swing.JFrame {
         pwfContraseñaCliente = new javax.swing.JPasswordField();
         tfUsuarioCliente = new javax.swing.JTextField();
         btnRegisterClient = new javax.swing.JButton();
+        dialogClientes = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -54,15 +76,156 @@ public class frameMain extends javax.swing.JFrame {
         cbTipo = new javax.swing.JComboBox<>();
         btnRegister = new javax.swing.JButton();
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Titulo");
+
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("Fecha de lanzamiento");
+
+        btnCrearLanzamiento.setText("Crear lanzamiento");
+        btnCrearLanzamiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCrearLanzamientoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCrearLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel13))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfTituloLanzamiento)
+                            .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfTituloLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnCrearLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Crear lanzamiento", jPanel5);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 550, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 346, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Publicar lanzamiento", jPanel6);
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Titulo");
+
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Fecha de lanzamiento");
+
+        btnModificarLanzamiento.setText("Modificar lanzamiento");
+        btnModificarLanzamiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModificarLanzamientoMouseClicked(evt);
+            }
+        });
+
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("Lanzamiento");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnModificarLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel16))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbLanzamientos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfNuevoTituloLanzamiento)
+                            .addComponent(dateChooserModify, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
+                .addGap(39, 39, 39))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbLanzamientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(tfNuevoTituloLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15)
+                    .addComponent(dateChooserModify, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnModificarLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+        );
+
+        jTabbedPane2.addTab("Editar lanzamiento", jPanel7);
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 550, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 346, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Eliminar lanzamiento", jPanel8);
+
+        javax.swing.GroupLayout dialogArtistasLayout = new javax.swing.GroupLayout(dialogArtistas.getContentPane());
+        dialogArtistas.getContentPane().setLayout(dialogArtistasLayout);
+        dialogArtistasLayout.setHorizontalGroup(
+            dialogArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane2)
+        );
+        dialogArtistasLayout.setVerticalGroup(
+            dialogArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane2)
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -206,6 +369,17 @@ public class frameMain extends javax.swing.JFrame {
             .addComponent(jTabbedPane1)
         );
 
+        javax.swing.GroupLayout dialogClientesLayout = new javax.swing.GroupLayout(dialogClientes.getContentPane());
+        dialogClientes.getContentPane().setLayout(dialogClientesLayout);
+        dialogClientesLayout.setHorizontalGroup(
+            dialogClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        dialogClientesLayout.setVerticalGroup(
+            dialogClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -309,7 +483,19 @@ public class frameMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        
+        if (cbTipo.getSelectedItem() == "Artista") {
+            dialogArtistas.pack();
+            dialogArtistas.setModal(true);
+            dialogArtistas.setLocationRelativeTo(this);
+            dialogArtistas.setVisible(true);
+        } else if (cbTipo.getSelectedItem() == "Cliente") {
+            dialogClientes.pack();
+            dialogClientes.setModal(true);
+            dialogClientes.setLocationRelativeTo(this);
+            dialogClientes.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Elija un tipo");
+        }
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void btnRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMouseClicked
@@ -326,7 +512,7 @@ public class frameMain extends javax.swing.JFrame {
         boolean exists = false;
         
         if (edadCliente <= 12) {
-            JOptionPane.showMessageDialog(this, "Debe ser mayor de 12 años");
+            JOptionPane.showMessageDialog(dialogRegister, "Debe ser mayor de 12 años");
         } else {
             for (Cliente cliente : clientes) {
                 if (cliente.getUsername().equals(user)) {
@@ -336,12 +522,12 @@ public class frameMain extends javax.swing.JFrame {
             }
             if (!exists) {
                 clientes.add(new Cliente("Cliente", user, clientPassword, edadCliente));
-                JOptionPane.showMessageDialog(this, "Registrado correctamente");
+                JOptionPane.showMessageDialog(dialogRegister, "Registrado correctamente");
                 tfUsuarioCliente.setText("");
                 pwfContraseñaCliente.setText("");
                 tfEdadCliente.setText("");
             } else {
-                JOptionPane.showMessageDialog(this, "El usuario ya existe");
+                JOptionPane.showMessageDialog(dialogRegister, "El usuario ya existe");
             }
         }
     }//GEN-LAST:event_btnRegisterClientMouseClicked
@@ -354,7 +540,7 @@ public class frameMain extends javax.swing.JFrame {
         boolean exists = false;
         
         if (edadArtista < 18) {
-            JOptionPane.showMessageDialog(this, "Debe tener 18 o mas años");
+            JOptionPane.showMessageDialog(dialogRegister, "Debe tener 18 o mas años");
         } else {
             for (Cliente cliente : clientes) {
                 if (cliente.getUsername().equals(user)) {
@@ -364,17 +550,39 @@ public class frameMain extends javax.swing.JFrame {
             }
             if (!exists) {
                 artistas.add(new Artista(nombreArtistico, "Artista", user, artistPassword, edadArtista));
-                JOptionPane.showMessageDialog(this, "Registrado correctamente");
+                JOptionPane.showMessageDialog(dialogRegister, "Registrado correctamente");
                 tfUsuarioArtista.setText("");
                 pwfContraseñaArtista.setText("");
                 tfEdadArtista.setText("");
                 tfNombreArtistico.setText("");
             } else {
-                JOptionPane.showMessageDialog(this, "El usuario ya existe");
+                JOptionPane.showMessageDialog(dialogRegister, "El usuario ya existe");
             }
         }
     }//GEN-LAST:event_btnRegisterArtistMouseClicked
 
+    private void btnCrearLanzamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearLanzamientoMouseClicked
+        String tituloLanzamiento = tfTituloLanzamiento.getText();
+        Date fechaLanzamiento = dateChooser.getDate();
+        
+        lanzamientos.add(new Lanzamiento(tituloLanzamiento, fechaLanzamiento, 0));
+        
+        cbLanzamientos.setModel(actualizarComboBoxLanzamientos());
+        
+        JOptionPane.showMessageDialog(dialogArtistas, "Lanzamiento creado correctamente");
+    }//GEN-LAST:event_btnCrearLanzamientoMouseClicked
+
+    private void btnModificarLanzamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarLanzamientoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarLanzamientoMouseClicked
+
+    public DefaultComboBoxModel actualizarComboBoxLanzamientos(){
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (Lanzamiento lanzamiento : lanzamientos) {
+            modelo.addElement(lanzamiento);
+        }
+        return modelo;
+    }
     /**
      * @param args the command line arguments
      */
@@ -411,18 +619,29 @@ public class frameMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCrearLanzamiento;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnModificarLanzamiento;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnRegisterArtist;
     private javax.swing.JButton btnRegisterClient;
+    private javax.swing.JComboBox<String> cbLanzamientos;
     private javax.swing.JComboBox<String> cbTipo;
+    private com.toedter.calendar.JDateChooser dateChooser;
+    private com.toedter.calendar.JDateChooser dateChooserModify;
+    private javax.swing.JDialog dialogArtistas;
+    private javax.swing.JDialog dialogClientes;
     private javax.swing.JDialog dialogRegister;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -432,13 +651,20 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPasswordField pwfContraseñaArtista;
     private javax.swing.JPasswordField pwfContraseñaCliente;
     private javax.swing.JPasswordField pwfPassword;
     private javax.swing.JTextField tfEdadArtista;
     private javax.swing.JTextField tfEdadCliente;
     private javax.swing.JTextField tfNombreArtistico;
+    private javax.swing.JTextField tfNuevoTituloLanzamiento;
+    private javax.swing.JTextField tfTituloLanzamiento;
     private javax.swing.JTextField tfUser;
     private javax.swing.JTextField tfUsuarioArtista;
     private javax.swing.JTextField tfUsuarioCliente;

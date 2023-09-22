@@ -36,4 +36,9 @@ public class Lanzamiento {
     public void setConteoLikes(int conteoLikes) {
         this.conteoLikes = conteoLikes;
     }
+
+    @Override
+    public String toString() {
+        return tituloDePublicacion;
+    }   
 }
