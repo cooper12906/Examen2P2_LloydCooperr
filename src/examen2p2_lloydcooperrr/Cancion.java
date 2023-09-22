@@ -1,7 +1,5 @@
 package examen2p2_lloydcooperrr;
 
-import java.util.Date;
-
 public class Cancion {
     private String tituloCancion;
     private int tiempoDuracion;
@@ -18,9 +16,7 @@ public class Cancion {
         this.tiempoDuracion = tiempoDuracion;
         this.referencia = referencia.getTituloDePublicacion();
     }
-    
-    
-
+   
     public String getTituloCancion() {
         return tituloCancion;
     }

@@ -1,9 +1,11 @@
 package examen2p2_lloydcooperrr;
 
 import com.toedter.calendar.JDateChooser;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -18,11 +20,14 @@ public class frameMain extends javax.swing.JFrame {
     private ArrayList<Artista> artistas = new ArrayList();
     private ArrayList<Lanzamiento> lanzamientos = new ArrayList();
     private ArrayList<ListasDeReproduccion> listasDeReproduccion = new ArrayList();
+    Artista artista;
+    Cliente cliente;
 
     public frameMain() {
         initComponents();
         this.setLocationRelativeTo(null);
         readArtists();
+        readClients();
     }
 
     /**
@@ -614,6 +619,8 @@ public class frameMain extends javax.swing.JFrame {
             }
             if (!exists) {
                 clientes.add(new Cliente("Cliente", user, clientPassword, edadCliente));
+                updateClients();
+                bitacora(user, "Cliente");
                 JOptionPane.showMessageDialog(dialogRegister, "Registrado correctamente");
                 tfUsuarioCliente.setText("");
                 pwfContraseñaCliente.setText("");
@@ -647,6 +654,7 @@ public class frameMain extends javax.swing.JFrame {
                 if (!exists) {
                     artistas.add(new Artista(nombreArtistico, "Artista", user, artistPassword, edadArtista));
                     updateArtists();
+                    bitacora(user, "Artista");
                     JOptionPane.showMessageDialog(dialogRegister, "Registrado correctamente");
                     tfUsuarioArtista.setText("");
                     pwfContraseñaArtista.setText("");
@@ -675,7 +683,15 @@ public class frameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearLanzamientoMouseClicked
 
     private void btnModificarLanzamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarLanzamientoMouseClicked
-        updateArtists();
+        if (tfNuevoTituloLanzamiento.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe llenar los campos");
+        } else {
+            String nuevoTitulo = tfNuevoTituloLanzamiento.getText();
+            Date nuevaFecha = dateChooser.getDate();
+            
+            artista.getAlbumesPublicados().get(cbLanzamientos.getSelectedIndex()).setTituloDePublicacion(nuevoTitulo);
+            JOptionPane.showMessageDialog(this, "Lanzamiento modificado correctamente");
+        }
     }//GEN-LAST:event_btnModificarLanzamientoMouseClicked
 
     private void btnCrearListaRPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearListaRPMouseClicked
@@ -684,6 +700,7 @@ public class frameMain extends javax.swing.JFrame {
         } else {
             String tituloLista = tfNombreDeLista.getText();
             listasDeReproduccion.add(new ListasDeReproduccion(tituloLista, 0));
+            updateClients();
             JOptionPane.showMessageDialog(dialogClientes, "Lista de reproduccion creada correctamente");
         }
     }//GEN-LAST:event_btnCrearListaRPMouseClicked
@@ -732,6 +749,64 @@ public class frameMain extends javax.swing.JFrame {
                 entrada.close();
             } catch (IOException ex) {
             }
+        }
+    }
+    
+    private void updateClients() {
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        try {
+            File fichero = new File("./clientes.coc");
+            fw = new FileOutputStream(fichero);
+            bw = new ObjectOutputStream(fw);
+            bw.writeObject(clientes);
+            bw.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+        }
+    }
+
+    private void readClients() {
+        File fichero = new File("./clientes.coc");
+        FileInputStream entrada = null;
+        ObjectInputStream objeto = null;
+        if (fichero.exists()) {
+            try {
+                entrada = new FileInputStream(fichero);
+                objeto = new ObjectInputStream(entrada);
+                clientes = (ArrayList<Cliente>) objeto.readObject();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                objeto.close();
+                entrada.close();
+            } catch (IOException ex) {
+            }
+        }
+    }
+    
+    private void bitacora(String usuario,String tipo) {
+        File fichero = new File("./bitacora.txt");
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try {
+            fw = new FileWriter(fichero,true);
+            bw = new BufferedWriter(fw);
+            bw.write("Se creo el usuario: "+ usuario + ". con el tipo : "+ tipo +", y con fecha de creacion: " + new Date().toString());
+            bw.flush();
+        } catch (Exception e) {
+        }
+        try {
+            fw.close();
+            bw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
