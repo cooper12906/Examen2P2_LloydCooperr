@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ListasDeReproduccion {
     private String nombre;
     private int conteoLikesLR;
-    private ArrayList<Cancion> cancionesAgregadas = new ArrayList();
+    private ArrayList <Cancion> cancionesAgregadas = new ArrayList();
 
     public ListasDeReproduccion(String nombre, int conteoLikesLR) {
         this.nombre = nombre;

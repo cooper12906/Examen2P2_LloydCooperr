@@ -1,20 +1,28 @@
 package examen2p2_lloydcooperrr;
 
 import com.toedter.calendar.JDateChooser;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 public class frameMain extends javax.swing.JFrame {
-    
-    private ArrayList <Cliente> clientes = new ArrayList();
-    private ArrayList <Artista> artistas = new ArrayList(); 
-    private ArrayList <Lanzamiento> lanzamientos = new ArrayList(); 
-    
+
+    private ArrayList<Cliente> clientes = new ArrayList();
+    private ArrayList<Artista> artistas = new ArrayList();
+    private ArrayList<Lanzamiento> lanzamientos = new ArrayList();
+    private ArrayList<ListasDeReproduccion> listasDeReproduccion = new ArrayList();
+
     public frameMain() {
         initComponents();
         this.setLocationRelativeTo(null);
+        readArtists();
     }
 
     /**
@@ -65,6 +73,13 @@ public class frameMain extends javax.swing.JFrame {
         tfUsuarioCliente = new javax.swing.JTextField();
         btnRegisterClient = new javax.swing.JButton();
         dialogClientes = new javax.swing.JDialog();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        tfNombreDeLista = new javax.swing.JTextField();
+        btnCrearListaRP = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -369,15 +384,83 @@ public class frameMain extends javax.swing.JFrame {
             .addComponent(jTabbedPane1)
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("Nombre de la lista");
+
+        btnCrearListaRP.setText("Crear lista de reproduccion");
+        btnCrearListaRP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCrearListaRPMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCrearListaRP, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfNombreDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfNombreDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17))
+                .addGap(18, 18, 18)
+                .addComponent(btnCrearListaRP, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Crear listas de reproduccion", jPanel2);
+
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 550, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 319, Short.MAX_VALUE)
+        );
+
+        jTabbedPane3.addTab("Editar/Eliminar listas", jPanel9);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 550, Short.MAX_VALUE)
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 319, Short.MAX_VALUE)
+        );
+
+        jTabbedPane3.addTab("Ver listas", jPanel11);
+
         javax.swing.GroupLayout dialogClientesLayout = new javax.swing.GroupLayout(dialogClientes.getContentPane());
         dialogClientes.getContentPane().setLayout(dialogClientesLayout);
         dialogClientesLayout.setHorizontalGroup(
             dialogClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jTabbedPane3)
         );
         dialogClientesLayout.setVerticalGroup(
             dialogClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jTabbedPane3)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -483,18 +566,27 @@ public class frameMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        if (cbTipo.getSelectedItem() == "Artista") {
-            dialogArtistas.pack();
-            dialogArtistas.setModal(true);
-            dialogArtistas.setLocationRelativeTo(this);
-            dialogArtistas.setVisible(true);
-        } else if (cbTipo.getSelectedItem() == "Cliente") {
-            dialogClientes.pack();
-            dialogClientes.setModal(true);
-            dialogClientes.setLocationRelativeTo(this);
-            dialogClientes.setVisible(true);
+
+        if (tfUser.getText().isEmpty() || pwfPassword.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe llenar todos campos");
         } else {
-            JOptionPane.showMessageDialog(this, "Elija un tipo");
+            if (cbTipo.getSelectedItem() == "Artista") {
+                dialogArtistas.pack();
+                dialogArtistas.setModal(true);
+                dialogArtistas.setLocationRelativeTo(this);
+                dialogArtistas.setVisible(true);
+                tfUser.setText("");
+                pwfPassword.setText("");
+            } else if (cbTipo.getSelectedItem() == "Cliente") {
+                dialogClientes.pack();
+                dialogClientes.setModal(true);
+                dialogClientes.setLocationRelativeTo(this);
+                dialogClientes.setVisible(true);
+                tfUser.setText("");
+                pwfPassword.setText("");
+            } else {
+                JOptionPane.showMessageDialog(this, "Elija un tipo");
+            }
         }
     }//GEN-LAST:event_btnLoginMouseClicked
 
@@ -510,7 +602,7 @@ public class frameMain extends javax.swing.JFrame {
         String clientPassword = pwfContraseñaCliente.getText();
         int edadCliente = Integer.parseInt(tfEdadCliente.getText());
         boolean exists = false;
-        
+
         if (edadCliente <= 12) {
             JOptionPane.showMessageDialog(dialogRegister, "Debe ser mayor de 12 años");
         } else {
@@ -533,56 +625,116 @@ public class frameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegisterClientMouseClicked
 
     private void btnRegisterArtistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterArtistMouseClicked
-        String user = tfUsuarioArtista.getText();
-        String artistPassword = pwfContraseñaArtista.getText();
-        int edadArtista = Integer.parseInt(tfEdadArtista.getText());
-        String nombreArtistico = tfNombreArtistico.getText();
-        boolean exists = false;
-        
-        if (edadArtista < 18) {
-            JOptionPane.showMessageDialog(dialogRegister, "Debe tener 18 o mas años");
+        if (tfUsuarioArtista.getText().isEmpty() || pwfContraseñaArtista.getText().isEmpty()
+                || tfEdadArtista.getText().isEmpty() || tfNombreArtistico.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(dialogRegister, "Debe llenar todos los campos");
         } else {
-            for (Cliente cliente : clientes) {
-                if (cliente.getUsername().equals(user)) {
-                    exists = true;
-                    break;
-                }
-            }
-            if (!exists) {
-                artistas.add(new Artista(nombreArtistico, "Artista", user, artistPassword, edadArtista));
-                JOptionPane.showMessageDialog(dialogRegister, "Registrado correctamente");
-                tfUsuarioArtista.setText("");
-                pwfContraseñaArtista.setText("");
-                tfEdadArtista.setText("");
-                tfNombreArtistico.setText("");
+            String user = tfUsuarioArtista.getText();
+            String artistPassword = pwfContraseñaArtista.getText();
+            int edadArtista = Integer.parseInt(tfEdadArtista.getText());
+            String nombreArtistico = tfNombreArtistico.getText();
+            boolean exists = false;
+
+            if (edadArtista < 18) {
+                JOptionPane.showMessageDialog(dialogRegister, "Debe tener 18 o mas años");
             } else {
-                JOptionPane.showMessageDialog(dialogRegister, "El usuario ya existe");
+                for (Cliente cliente : clientes) {
+                    if (cliente.getUsername().equals(user)) {
+                        exists = true;
+                        break;
+                    }
+                }
+                if (!exists) {
+                    artistas.add(new Artista(nombreArtistico, "Artista", user, artistPassword, edadArtista));
+                    updateArtists();
+                    JOptionPane.showMessageDialog(dialogRegister, "Registrado correctamente");
+                    tfUsuarioArtista.setText("");
+                    pwfContraseñaArtista.setText("");
+                    tfEdadArtista.setText("");
+                    tfNombreArtistico.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(dialogRegister, "El usuario ya existe");
+                }
             }
         }
     }//GEN-LAST:event_btnRegisterArtistMouseClicked
 
     private void btnCrearLanzamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearLanzamientoMouseClicked
-        String tituloLanzamiento = tfTituloLanzamiento.getText();
-        Date fechaLanzamiento = dateChooser.getDate();
-        
-        lanzamientos.add(new Lanzamiento(tituloLanzamiento, fechaLanzamiento, 0));
-        
-        cbLanzamientos.setModel(actualizarComboBoxLanzamientos());
-        
-        JOptionPane.showMessageDialog(dialogArtistas, "Lanzamiento creado correctamente");
+        if (tfTituloLanzamiento.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(dialogArtistas, "Debe llenar todos los campos");
+        } else {
+            String tituloLanzamiento = tfTituloLanzamiento.getText();
+            Date fechaLanzamiento = dateChooser.getDate();
+
+            lanzamientos.add(new Lanzamiento(tituloLanzamiento, fechaLanzamiento, 0));
+            cbLanzamientos.setModel(actualizarComboBoxLanzamientos());
+            updateArtists();
+            JOptionPane.showMessageDialog(dialogArtistas, "Lanzamiento creado correctamente");
+            tfTituloLanzamiento.setText("");
+        }
     }//GEN-LAST:event_btnCrearLanzamientoMouseClicked
 
     private void btnModificarLanzamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarLanzamientoMouseClicked
-        // TODO add your handling code here:
+        updateArtists();
     }//GEN-LAST:event_btnModificarLanzamientoMouseClicked
 
-    public DefaultComboBoxModel actualizarComboBoxLanzamientos(){
+    private void btnCrearListaRPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearListaRPMouseClicked
+        if (tfNombreDeLista.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(dialogClientes, "Llene todos los campos");
+        } else {
+            String tituloLista = tfNombreDeLista.getText();
+            listasDeReproduccion.add(new ListasDeReproduccion(tituloLista, 0));
+            JOptionPane.showMessageDialog(dialogClientes, "Lista de reproduccion creada correctamente");
+        }
+    }//GEN-LAST:event_btnCrearListaRPMouseClicked
+
+    public DefaultComboBoxModel actualizarComboBoxLanzamientos() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (Lanzamiento lanzamiento : lanzamientos) {
             modelo.addElement(lanzamiento);
         }
         return modelo;
     }
+    
+    private void updateArtists() {
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        try {
+            File fichero = new File("./artistas.coc");
+            fw = new FileOutputStream(fichero);
+            bw = new ObjectOutputStream(fw);
+            bw.writeObject(artistas);
+            bw.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+        }
+    }
+
+    private void readArtists() {
+        File fichero = new File("./artistas.coc");
+        FileInputStream entrada = null;
+        ObjectInputStream objeto = null;
+        if (fichero.exists()) {
+            try {
+                entrada = new FileInputStream(fichero);
+                objeto = new ObjectInputStream(entrada);
+                artistas = (ArrayList<Artista>) objeto.readObject();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                objeto.close();
+                entrada.close();
+            } catch (IOException ex) {
+            }
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -620,6 +772,7 @@ public class frameMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearLanzamiento;
+    private javax.swing.JButton btnCrearListaRP;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnModificarLanzamiento;
     private javax.swing.JButton btnRegister;
@@ -640,6 +793,7 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -649,20 +803,25 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JPasswordField pwfContraseñaArtista;
     private javax.swing.JPasswordField pwfContraseñaCliente;
     private javax.swing.JPasswordField pwfPassword;
     private javax.swing.JTextField tfEdadArtista;
     private javax.swing.JTextField tfEdadCliente;
     private javax.swing.JTextField tfNombreArtistico;
+    private javax.swing.JTextField tfNombreDeLista;
     private javax.swing.JTextField tfNuevoTituloLanzamiento;
     private javax.swing.JTextField tfTituloLanzamiento;
     private javax.swing.JTextField tfUser;
