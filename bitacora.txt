@@ -1,0 +1,1 @@
+Se creo el usuario: Messi. con el tipo : Artista, y con fecha de creacion: Fri Sep 22 17:10:05 CST 2023Se creo el usuario: CR7. con el tipo : Cliente, y con fecha de creacion: Fri Sep 22 17:10:16 CST 2023

@@ -571,27 +571,32 @@ public class frameMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-
         if (tfUser.getText().isEmpty() || pwfPassword.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe llenar todos campos");
-        } else {
-            if (cbTipo.getSelectedItem() == "Artista") {
-                dialogArtistas.pack();
-                dialogArtistas.setModal(true);
-                dialogArtistas.setLocationRelativeTo(this);
-                dialogArtistas.setVisible(true);
-                tfUser.setText("");
-                pwfPassword.setText("");
-            } else if (cbTipo.getSelectedItem() == "Cliente") {
-                dialogClientes.pack();
-                dialogClientes.setModal(true);
-                dialogClientes.setLocationRelativeTo(this);
-                dialogClientes.setVisible(true);
-                tfUser.setText("");
-                pwfPassword.setText("");
-            } else {
-                JOptionPane.showMessageDialog(this, "Elija un tipo");
+        } else if (cbTipo.getSelectedIndex() == 0) {
+            for (Artista a : artistas) {
+                if (a.getUsername().equals(tfUser.getText()) && a.getPassword().equals(pwfPassword.getText())) {
+                    dialogArtistas.pack();
+                    dialogArtistas.setModal(true);
+                    dialogArtistas.setLocationRelativeTo(this);
+                    dialogArtistas.setVisible(true);
+                    tfUser.setText("");
+                    pwfPassword.setText("");
+                }
             }
+        } else if (cbTipo.getSelectedIndex() == 1){
+            for (Cliente c : clientes) {
+                if (c.getUsername().equals(tfUser.getText()) && c.getPassword().equals(pwfPassword.getText())) {
+                    dialogClientes.pack();
+                    dialogClientes.setModal(true);
+                    dialogClientes.setLocationRelativeTo(this);
+                    dialogClientes.setVisible(true);
+                    tfUser.setText("");
+                    pwfPassword.setText("");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Intentelo de nuevo");
         }
     }//GEN-LAST:event_btnLoginMouseClicked
 
@@ -688,7 +693,7 @@ public class frameMain extends javax.swing.JFrame {
         } else {
             String nuevoTitulo = tfNuevoTituloLanzamiento.getText();
             Date nuevaFecha = dateChooser.getDate();
-            
+
             artista.getAlbumesPublicados().get(cbLanzamientos.getSelectedIndex()).setTituloDePublicacion(nuevoTitulo);
             JOptionPane.showMessageDialog(this, "Lanzamiento modificado correctamente");
         }
@@ -712,7 +717,7 @@ public class frameMain extends javax.swing.JFrame {
         }
         return modelo;
     }
-    
+
     private void updateArtists() {
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
@@ -751,7 +756,7 @@ public class frameMain extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private void updateClients() {
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
@@ -790,15 +795,15 @@ public class frameMain extends javax.swing.JFrame {
             }
         }
     }
-    
-    private void bitacora(String usuario,String tipo) {
+
+    private void bitacora(String usuario, String tipo) {
         File fichero = new File("./bitacora.txt");
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
-            fw = new FileWriter(fichero,true);
+            fw = new FileWriter(fichero, true);
             bw = new BufferedWriter(fw);
-            bw.write("Se creo el usuario: "+ usuario + ". con el tipo : "+ tipo +", y con fecha de creacion: " + new Date().toString());
+            bw.write("Se creo el usuario: " + usuario + " con el tipo : " + tipo + " y con fecha de creacion: " + new Date().toString());
             bw.flush();
         } catch (Exception e) {
         }
