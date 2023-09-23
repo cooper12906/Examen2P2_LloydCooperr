@@ -4,7 +4,12 @@ import java.util.Date;
 
 public class Single extends Lanzamiento{
     private Cancion cancion;
-
+    
+    public Single(String tituloDePublicacion, Date fechaDeLanzamiento, int conteoLikes) {
+        super(tituloDePublicacion, fechaDeLanzamiento, conteoLikes);
+        
+    }
+    
     public Single(Cancion cancion, String tituloDePublicacion, Date fechaDeLanzamiento, int conteoLikes) {
         super(tituloDePublicacion, fechaDeLanzamiento, conteoLikes);
         this.cancion = cancion;
