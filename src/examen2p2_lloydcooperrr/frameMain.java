@@ -28,6 +28,7 @@ public class frameMain extends javax.swing.JFrame {
     Cliente cliente;
     ListasDeReproduccion LDR;
     adminBarra ab;
+    Cancion cancion;
 
     public frameMain() {
         initComponents();
@@ -124,9 +125,12 @@ public class frameMain extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         pbReproduccion = new javax.swing.JProgressBar();
         btnReproducir = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        comboBoxAlbumes = new javax.swing.JComboBox<>();
+        comboBoxSingles = new javax.swing.JComboBox<>();
+        cbCanciones = new javax.swing.JComboBox<>();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -745,11 +749,14 @@ public class frameMain extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setText("Cancion");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setText("Single");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel28.setText("Album");
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -759,26 +766,39 @@ public class frameMain extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pbReproduccion, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
-                    .addComponent(btnReproducir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(btnReproducir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboBoxAlbumes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel28))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboBoxSingles, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel26)
+                    .addComponent(cbCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(pbReproduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel27)
+                    .addComponent(jLabel28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxSingles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxAlbumes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addComponent(btnReproducir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -1086,6 +1106,7 @@ public class frameMain extends javax.swing.JFrame {
             artistas.get(artistas.indexOf(artista)).getAlbumesPublicados().add(new Album(0, tfNombreAlbum.getText(), dateChooserAlbum.getDate(), 0));
             updateClients();
             cbAlbumes.setModel(actualizarComboBoxAlbumes());
+            comboBoxAlbumes.setModel(actualizarComboBoxAlbumes());
             JOptionPane.showMessageDialog(dialogClientes, "Album creado");
             tfNombreAlbum.setText("");
         }
@@ -1098,6 +1119,7 @@ public class frameMain extends javax.swing.JFrame {
             artistas.get(artistas.indexOf(artista)).getCancionesSubidas().add(new Single(tfNombreSingle.getText(), dateChooserSingle.getDate(), 0));
             updateClients();
             cbSingles.setModel(actualizarComboBoxSingles());
+            comboBoxSingles.setModel(actualizarComboBoxSingles());
             JOptionPane.showMessageDialog(dialogClientes, "Single creado");
             tfNombreSingle.setText("");
         }
@@ -1111,21 +1133,24 @@ public class frameMain extends javax.swing.JFrame {
             int tiempoDuracion = (int) spinnerTiempoDuracion.getValue();
             if (rbAlbum.isSelected()) {
                 canciones.add(new Cancion(nombreCancion, tiempoDuracion, (Album) cbAlbumes.getSelectedItem()));
+                cbCanciones.setModel(actualizarComboBoxCanciones());
                 
             } else if (rbSingle.isSelected()){
                 canciones.add(new Cancion(nombreCancion, tiempoDuracion, (Single) cbSingles.getSelectedItem()));
+                cbCanciones.setModel(actualizarComboBoxCanciones());
             }
             JOptionPane.showMessageDialog(dialogClientes, "Cancion creada correctamente");
         }
     }//GEN-LAST:event_btnCrearCancionMouseClicked
 
     private void btnReproducirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReproducirMouseClicked
-            ab = new adminBarra(pbReproduccion, 0, jPanel1);
-            pbReproduccion.setMaximum(7);
-            UIManager.put("nimbusOrange", Color.YELLOW);
-            ab.setVive(true);
-            ab.setTiempo(6);
-            ab.start();
+
+        ab = new adminBarra(pbReproduccion, 0, jPanel1);
+        pbReproduccion.setMaximum(7);
+        UIManager.put("nimbusOrange", Color.YELLOW);
+        ab.setVive(true);
+        ab.setTiempo(6);
+        ab.start();
             
     }//GEN-LAST:event_btnReproducirMouseClicked
 
@@ -1157,6 +1182,14 @@ public class frameMain extends javax.swing.JFrame {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (Single single : artistas.get(artistas.indexOf(artista)).getCancionesSubidas()) {
             modelo.addElement(single);
+        }
+        return modelo;
+    }
+    
+    public DefaultComboBoxModel actualizarComboBoxCanciones() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (Cancion cancion : canciones) {
+            modelo.addElement(cancion);
         }
         return modelo;
     }
@@ -1318,10 +1351,13 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JButton btnReproducir;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbAlbumes;
+    private javax.swing.JComboBox<String> cbCanciones;
     private javax.swing.JComboBox<String> cbLanzamientos;
     private javax.swing.JComboBox<String> cbListasRP;
     private javax.swing.JComboBox<String> cbSingles;
     private javax.swing.JComboBox<String> cbTipo;
+    private javax.swing.JComboBox<String> comboBoxAlbumes;
+    private javax.swing.JComboBox<String> comboBoxSingles;
     private com.toedter.calendar.JDateChooser dateChooser;
     private com.toedter.calendar.JDateChooser dateChooserAlbum;
     private com.toedter.calendar.JDateChooser dateChooserModify;
@@ -1329,9 +1365,6 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JDialog dialogArtistas;
     private javax.swing.JDialog dialogClientes;
     private javax.swing.JDialog dialogRegister;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1350,6 +1383,9 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
