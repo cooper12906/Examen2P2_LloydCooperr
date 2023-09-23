@@ -62,7 +62,6 @@ public class adminBarra extends Thread{
                 vive = false;
                 barra.setForeground(colornull);
                 barra.setValue(0);
-                JOptionPane.showMessageDialog(panel, "Accion realizada exitosamente");
             }
             //FIN IF
 
