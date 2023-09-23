@@ -80,6 +80,8 @@ public class frameMain extends javax.swing.JFrame {
         spinnerTiempoDuracion = new javax.swing.JSpinner();
         cbAlbumes = new javax.swing.JComboBox<>();
         cbSingles = new javax.swing.JComboBox<>();
+        rbSingle = new javax.swing.JRadioButton();
+        rbAlbum = new javax.swing.JRadioButton();
         dialogRegister = new javax.swing.JDialog();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -116,6 +118,7 @@ public class frameMain extends javax.swing.JFrame {
         btnModificarListaRP = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -384,32 +387,39 @@ public class frameMain extends javax.swing.JFrame {
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("Nombre de la cancion");
 
-        spinnerTiempoDuracion.setModel(new javax.swing.SpinnerNumberModel(0, 0, 0, 10));
+        spinnerTiempoDuracion.setModel(new javax.swing.SpinnerNumberModel(0, null, null, 10));
+
+        rbSingle.setText("Single");
+
+        rbAlbum.setText("Album");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addComponent(btnCrearCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap(37, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(cbAlbumes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addComponent(cbSingles, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel25)
-                            .addComponent(jLabel24))
-                        .addGap(18, 18, 18)
+                        .addComponent(rbAlbum)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfNombreCancion, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(spinnerTiempoDuracion))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(cbAlbumes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbSingles, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel25)
+                                    .addComponent(jLabel24))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfNombreCancion)
+                                    .addComponent(spinnerTiempoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbSingle))
+                    .addComponent(btnCrearCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -425,7 +435,9 @@ public class frameMain extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbAlbumes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbSingles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbSingles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbSingle)
+                    .addComponent(rbAlbum))
                 .addGap(21, 21, 21)
                 .addComponent(btnCrearCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -847,13 +859,13 @@ public class frameMain extends javax.swing.JFrame {
         } else if (cbTipo.getSelectedIndex() == 1) {
             for (Cliente c : clientes) {
                 if (c.getUsername().equals(tfUser.getText()) && c.getPassword().equals(pwfPassword.getText())) {
+                    cliente = c;
                     dialogClientes.pack();
                     dialogClientes.setModal(true);
                     dialogClientes.setLocationRelativeTo(this);
                     dialogClientes.setVisible(true);
                     tfUser.setText("");
                     pwfPassword.setText("");
-                    cliente = c;
                 }
             }
         } else {
@@ -1017,6 +1029,7 @@ public class frameMain extends javax.swing.JFrame {
             updateClients();
             cbAlbumes.setModel(actualizarComboBoxAlbumes());
             JOptionPane.showMessageDialog(dialogClientes, "Album creado");
+            tfNombreAlbum.setText("");
         }
     }//GEN-LAST:event_btnCrearAlbumMouseClicked
 
@@ -1028,11 +1041,24 @@ public class frameMain extends javax.swing.JFrame {
             updateClients();
             cbSingles.setModel(actualizarComboBoxSingles());
             JOptionPane.showMessageDialog(dialogClientes, "Single creado");
+            tfNombreSingle.setText("");
         }
     }//GEN-LAST:event_btnCrearSingleMouseClicked
 
     private void btnCrearCancionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCancionMouseClicked
-        
+        if (tfNombreCancion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(dialogClientes, "Debe llenar todos los campos");
+        } else {
+            String nombreCancion = tfNombreCancion.getText();
+            int tiempoDuracion = (int) spinnerTiempoDuracion.getValue();
+            if (rbAlbum.isSelected()) {
+                canciones.add(new Cancion(nombreCancion, tiempoDuracion, (Album) cbAlbumes.getSelectedItem()));
+                
+            } else if (rbSingle.isSelected()){
+                canciones.add(new Cancion(nombreCancion, tiempoDuracion, (Single) cbSingles.getSelectedItem()));
+            }
+            JOptionPane.showMessageDialog(dialogClientes, "Cancion creada correctamente");
+        }
     }//GEN-LAST:event_btnCrearCancionMouseClicked
 
     public DefaultComboBoxModel actualizarComboBoxLanzamientos() {
@@ -1221,6 +1247,7 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnRegisterArtist;
     private javax.swing.JButton btnRegisterClient;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbAlbumes;
     private javax.swing.JComboBox<String> cbLanzamientos;
     private javax.swing.JComboBox<String> cbListasRP;
@@ -1278,6 +1305,8 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JPasswordField pwfContraseñaArtista;
     private javax.swing.JPasswordField pwfContraseñaCliente;
     private javax.swing.JPasswordField pwfPassword;
+    private javax.swing.JRadioButton rbAlbum;
+    private javax.swing.JRadioButton rbSingle;
     private javax.swing.JSpinner spinnerTiempoDuracion;
     private javax.swing.JTextField tfEdadArtista;
     private javax.swing.JTextField tfEdadCliente;
