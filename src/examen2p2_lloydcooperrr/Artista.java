@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Artista extends Usuario{
     private String nombreArtistico;
-    private ArrayList <Cancion> cancionesSubidas = new ArrayList();
+    private ArrayList <Single> cancionesSubidas = new ArrayList();
     private ArrayList <Album> albumesPublicados = new ArrayList();
 
     public Artista(String nombreArtistico, String tipoUser, String username, String password, int edad) {
@@ -20,11 +20,11 @@ public class Artista extends Usuario{
         this.nombreArtistico = nombreArtistico;
     }
 
-    public ArrayList<Cancion> getCancionesSubidas() {
+    public ArrayList<Single> getCancionesSubidas() {
         return cancionesSubidas;
     }
 
-    public void setCancionesSubidas(ArrayList<Cancion> cancionesSubidas) {
+    public void setCancionesSubidas(ArrayList<Single> cancionesSubidas) {
         this.cancionesSubidas = cancionesSubidas;
     }
 

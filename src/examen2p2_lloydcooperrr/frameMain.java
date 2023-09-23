@@ -12,6 +12,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 public class frameMain extends javax.swing.JFrame {
@@ -56,7 +57,7 @@ public class frameMain extends javax.swing.JFrame {
         dateChooserModify = new com.toedter.calendar.JDateChooser();
         cbLanzamientos = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
+        btnEliminarLanzamiento = new javax.swing.JButton();
         dialogRegister = new javax.swing.JDialog();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -84,6 +85,14 @@ public class frameMain extends javax.swing.JFrame {
         tfNombreDeLista = new javax.swing.JTextField();
         btnCrearListaRP = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListCanciones = new javax.swing.JList<>();
+        cbListasRP = new javax.swing.JComboBox<>();
+        tfNuevoNombreListaRP = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        btnEliminarListaRP = new javax.swing.JButton();
+        btnModificarListaRP = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -180,6 +189,13 @@ public class frameMain extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Lanzamiento");
 
+        btnEliminarLanzamiento.setText("Eliminar lanzamiento");
+        btnEliminarLanzamiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarLanzamientoMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -187,7 +203,6 @@ public class frameMain extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(41, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnModificarLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel14)
@@ -197,8 +212,12 @@ public class frameMain extends javax.swing.JFrame {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbLanzamientos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tfNuevoTituloLanzamiento)
-                            .addComponent(dateChooserModify, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
-                .addGap(39, 39, 39))
+                            .addComponent(dateChooserModify, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(btnModificarLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEliminarLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,26 +235,13 @@ public class frameMain extends javax.swing.JFrame {
                     .addComponent(jLabel15)
                     .addComponent(dateChooserModify, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnModificarLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnModificarLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminarLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
         );
 
-        jTabbedPane2.addTab("Editar lanzamiento", jPanel7);
-
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 346, Short.MAX_VALUE)
-        );
-
-        jTabbedPane2.addTab("Eliminar lanzamiento", jPanel8);
+        jTabbedPane2.addTab("Editar/Eliminar lanzamiento", jPanel7);
 
         javax.swing.GroupLayout dialogArtistasLayout = new javax.swing.GroupLayout(dialogArtistas.getContentPane());
         dialogArtistas.getContentPane().setLayout(dialogArtistasLayout);
@@ -431,15 +437,77 @@ public class frameMain extends javax.swing.JFrame {
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
+        jScrollPane1.setViewportView(jListCanciones);
+
+        cbListasRP.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbListasRPItemStateChanged(evt);
+            }
+        });
+
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("Nuevo nombre");
+
+        btnEliminarListaRP.setText("Eliminar lista de reproduccion");
+        btnEliminarListaRP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarListaRPMouseClicked(evt);
+            }
+        });
+
+        btnModificarListaRP.setText("Modificar lista de reproduccion");
+        btnModificarListaRP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModificarListaRPMouseClicked(evt);
+            }
+        });
+
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("Listas de reproduccion");
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbListasRP, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel18)
+                            .addComponent(tfNuevoNombreListaRP)
+                            .addComponent(btnEliminarListaRP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnModificarListaRP))))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 319, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel19)
+                .addGap(1, 1, 1)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(cbListasRP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel18)
+                        .addGap(7, 7, 7)))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(tfNuevoNombreListaRP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnModificarListaRP, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminarListaRP, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Editar/Eliminar listas", jPanel9);
@@ -584,7 +652,7 @@ public class frameMain extends javax.swing.JFrame {
                     pwfPassword.setText("");
                 }
             }
-        } else if (cbTipo.getSelectedIndex() == 1){
+        } else if (cbTipo.getSelectedIndex() == 1) {
             for (Cliente c : clientes) {
                 if (c.getUsername().equals(tfUser.getText()) && c.getPassword().equals(pwfPassword.getText())) {
                     dialogClientes.pack();
@@ -695,6 +763,8 @@ public class frameMain extends javax.swing.JFrame {
             Date nuevaFecha = dateChooser.getDate();
 
             artista.getAlbumesPublicados().get(cbLanzamientos.getSelectedIndex()).setTituloDePublicacion(nuevoTitulo);
+            artista.getAlbumesPublicados().get(cbLanzamientos.getSelectedIndex()).setFechaDeLanzamiento(nuevaFecha);
+            updateArtists();
             JOptionPane.showMessageDialog(this, "Lanzamiento modificado correctamente");
         }
     }//GEN-LAST:event_btnModificarLanzamientoMouseClicked
@@ -706,14 +776,57 @@ public class frameMain extends javax.swing.JFrame {
             String tituloLista = tfNombreDeLista.getText();
             listasDeReproduccion.add(new ListasDeReproduccion(tituloLista, 0));
             updateClients();
+            cbListasRP.setModel(actualizarComboBoxListasRP());
             JOptionPane.showMessageDialog(dialogClientes, "Lista de reproduccion creada correctamente");
         }
     }//GEN-LAST:event_btnCrearListaRPMouseClicked
+
+    private void btnEliminarLanzamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarLanzamientoMouseClicked
+        if (cbListasRP.getSelectedIndex() >= 0) {
+            artistas.remove(cbLanzamientos.getSelectedIndex());
+            actualizarComboBoxLanzamientos();
+            updateArtists();
+            JOptionPane.showMessageDialog(dialogArtistas, "Lanzamiento eliminado correctamente");
+        }
+    }//GEN-LAST:event_btnEliminarLanzamientoMouseClicked
+
+    private void btnEliminarListaRPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarListaRPMouseClicked
+        listasDeReproduccion.remove(cbListasRP.getSelectedIndex());
+        updateClients();
+        cbListasRP.setModel(actualizarComboBoxListasRP());
+        JOptionPane.showMessageDialog(dialogClientes, "Lista eliminada correctamente");
+    }//GEN-LAST:event_btnEliminarListaRPMouseClicked
+
+    private void btnModificarListaRPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarListaRPMouseClicked
+
+    }//GEN-LAST:event_btnModificarListaRPMouseClicked
+
+    private void cbListasRPItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbListasRPItemStateChanged
+        if (cbListasRP.getSelectedIndex() >= 0) {
+           jListCanciones.setModel(actualizarList());
+        }
+    }//GEN-LAST:event_cbListasRPItemStateChanged
 
     public DefaultComboBoxModel actualizarComboBoxLanzamientos() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (Lanzamiento lanzamiento : lanzamientos) {
             modelo.addElement(lanzamiento);
+        }
+        return modelo;
+    }
+
+    public DefaultComboBoxModel actualizarComboBoxListasRP() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (ListasDeReproduccion listasRP : listasDeReproduccion) {
+            modelo.addElement(listasRP);
+        }
+        return modelo;
+    }
+    
+    public DefaultListModel actualizarList(){
+        DefaultListModel modelo = new DefaultListModel();
+        for (ListasDeReproduccion listasDeReproduccion1 : listasDeReproduccion) {
+            modelo.addAll(listasDeReproduccion);
         }
         return modelo;
     }
@@ -853,12 +966,16 @@ public class frameMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearLanzamiento;
     private javax.swing.JButton btnCrearListaRP;
+    private javax.swing.JButton btnEliminarLanzamiento;
+    private javax.swing.JButton btnEliminarListaRP;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnModificarLanzamiento;
+    private javax.swing.JButton btnModificarListaRP;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnRegisterArtist;
     private javax.swing.JButton btnRegisterClient;
     private javax.swing.JComboBox<String> cbLanzamientos;
+    private javax.swing.JComboBox<String> cbListasRP;
     private javax.swing.JComboBox<String> cbTipo;
     private com.toedter.calendar.JDateChooser dateChooser;
     private com.toedter.calendar.JDateChooser dateChooserModify;
@@ -874,6 +991,8 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -882,6 +1001,7 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jListCanciones;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
@@ -890,8 +1010,8 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
@@ -902,6 +1022,7 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JTextField tfEdadCliente;
     private javax.swing.JTextField tfNombreArtistico;
     private javax.swing.JTextField tfNombreDeLista;
+    private javax.swing.JTextField tfNuevoNombreListaRP;
     private javax.swing.JTextField tfNuevoTituloLanzamiento;
     private javax.swing.JTextField tfTituloLanzamiento;
     private javax.swing.JTextField tfUser;

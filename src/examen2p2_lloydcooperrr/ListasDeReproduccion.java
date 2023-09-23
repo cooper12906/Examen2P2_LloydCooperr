@@ -35,6 +35,9 @@ public class ListasDeReproduccion {
     public void setCancionesAgregadas(ArrayList<Cancion> cancionesAgregadas) {
         this.cancionesAgregadas = cancionesAgregadas;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }
