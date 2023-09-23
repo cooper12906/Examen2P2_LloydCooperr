@@ -73,6 +73,13 @@ public class frameMain extends javax.swing.JFrame {
         btnCrearSingle = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        tfNombreCancion = new javax.swing.JTextField();
+        btnCrearCancion = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        spinnerTiempoDuracion = new javax.swing.JSpinner();
+        cbAlbumes = new javax.swing.JComboBox<>();
+        cbSingles = new javax.swing.JComboBox<>();
         dialogRegister = new javax.swing.JDialog();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -362,15 +369,66 @@ public class frameMain extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Crear single", jPanel10);
 
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel24.setText("Tiempo de duracion");
+
+        btnCrearCancion.setText("Crear cancion");
+        btnCrearCancion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCrearCancionMouseClicked(evt);
+            }
+        });
+
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel25.setText("Nombre de la cancion");
+
+        spinnerTiempoDuracion.setModel(new javax.swing.SpinnerNumberModel(0, 0, 0, 10));
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(37, Short.MAX_VALUE)
+                .addComponent(btnCrearCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(cbAlbumes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(cbSingles, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel24))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfNombreCancion, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(spinnerTiempoDuracion))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 335, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfNombreCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(spinnerTiempoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbAlbumes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbSingles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addComponent(btnCrearCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Crear cancion", jPanel12);
@@ -776,12 +834,14 @@ public class frameMain extends javax.swing.JFrame {
         } else if (cbTipo.getSelectedIndex() == 0) {
             for (Artista a : artistas) {
                 if (a.getUsername().equals(tfUser.getText()) && a.getPassword().equals(pwfPassword.getText())) {
+                    artista = a;
                     dialogArtistas.pack();
                     dialogArtistas.setModal(true);
                     dialogArtistas.setLocationRelativeTo(this);
                     dialogArtistas.setVisible(true);
                     tfUser.setText("");
                     pwfPassword.setText("");
+                    
                 }
             }
         } else if (cbTipo.getSelectedIndex() == 1) {
@@ -793,6 +853,7 @@ public class frameMain extends javax.swing.JFrame {
                     dialogClientes.setVisible(true);
                     tfUser.setText("");
                     pwfPassword.setText("");
+                    cliente = c;
                 }
             }
         } else {
@@ -953,6 +1014,8 @@ public class frameMain extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(dialogClientes, "Debe llenar todos los campos");
         } else {
             artistas.get(artistas.indexOf(artista)).getAlbumesPublicados().add(new Album(0, tfNombreAlbum.getText(), dateChooserAlbum.getDate(), 0));
+            updateClients();
+            cbAlbumes.setModel(actualizarComboBoxAlbumes());
             JOptionPane.showMessageDialog(dialogClientes, "Album creado");
         }
     }//GEN-LAST:event_btnCrearAlbumMouseClicked
@@ -962,9 +1025,15 @@ public class frameMain extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(dialogClientes, "Debe llenar todos los campos");
         } else {
             artistas.get(artistas.indexOf(artista)).getCancionesSubidas().add(new Single(tfNombreSingle.getText(), dateChooserSingle.getDate(), 0));
+            updateClients();
+            cbSingles.setModel(actualizarComboBoxSingles());
             JOptionPane.showMessageDialog(dialogClientes, "Single creado");
         }
     }//GEN-LAST:event_btnCrearSingleMouseClicked
+
+    private void btnCrearCancionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCancionMouseClicked
+        
+    }//GEN-LAST:event_btnCrearCancionMouseClicked
 
     public DefaultComboBoxModel actualizarComboBoxLanzamientos() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -978,6 +1047,22 @@ public class frameMain extends javax.swing.JFrame {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (ListasDeReproduccion listasRP : listasDeReproduccion) {
             modelo.addElement(listasRP);
+        }
+        return modelo;
+    }
+    
+    public DefaultComboBoxModel actualizarComboBoxAlbumes() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (Album album : artistas.get(artistas.indexOf(artista)).getAlbumesPublicados()) {
+            modelo.addElement(album);
+        }
+        return modelo;
+    }
+    
+    public DefaultComboBoxModel actualizarComboBoxSingles() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (Single single : artistas.get(artistas.indexOf(artista)).getCancionesSubidas()) {
+            modelo.addElement(single);
         }
         return modelo;
     }
@@ -1124,6 +1209,7 @@ public class frameMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearAlbum;
+    private javax.swing.JButton btnCrearCancion;
     private javax.swing.JButton btnCrearLanzamiento;
     private javax.swing.JButton btnCrearListaRP;
     private javax.swing.JButton btnCrearSingle;
@@ -1135,8 +1221,10 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnRegisterArtist;
     private javax.swing.JButton btnRegisterClient;
+    private javax.swing.JComboBox<String> cbAlbumes;
     private javax.swing.JComboBox<String> cbLanzamientos;
     private javax.swing.JComboBox<String> cbListasRP;
+    private javax.swing.JComboBox<String> cbSingles;
     private javax.swing.JComboBox<String> cbTipo;
     private com.toedter.calendar.JDateChooser dateChooser;
     private com.toedter.calendar.JDateChooser dateChooserAlbum;
@@ -1161,6 +1249,8 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1188,10 +1278,12 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JPasswordField pwfContraseñaArtista;
     private javax.swing.JPasswordField pwfContraseñaCliente;
     private javax.swing.JPasswordField pwfPassword;
+    private javax.swing.JSpinner spinnerTiempoDuracion;
     private javax.swing.JTextField tfEdadArtista;
     private javax.swing.JTextField tfEdadCliente;
     private javax.swing.JTextField tfNombreAlbum;
     private javax.swing.JTextField tfNombreArtistico;
+    private javax.swing.JTextField tfNombreCancion;
     private javax.swing.JTextField tfNombreDeLista;
     private javax.swing.JTextField tfNombreSingle;
     private javax.swing.JTextField tfNuevoNombreListaRP;
