@@ -1,6 +1,7 @@
 package examen2p2_lloydcooperrr;
 
 import com.toedter.calendar.JDateChooser;
+import java.awt.Color;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,6 +15,7 @@ import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class frameMain extends javax.swing.JFrame {
 
@@ -25,6 +27,7 @@ public class frameMain extends javax.swing.JFrame {
     Artista artista;
     Cliente cliente;
     ListasDeReproduccion LDR;
+    adminBarra ab;
 
     public frameMain() {
         initComponents();
@@ -118,6 +121,12 @@ public class frameMain extends javax.swing.JFrame {
         btnModificarListaRP = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
+        pbReproduccion = new javax.swing.JProgressBar();
+        btnReproducir = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -632,7 +641,7 @@ public class frameMain extends javax.swing.JFrame {
                     .addComponent(jLabel17))
                 .addGap(18, 18, 18)
                 .addComponent(btnCrearListaRP, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Crear listas de reproduccion", jPanel2);
@@ -709,7 +718,7 @@ public class frameMain extends javax.swing.JFrame {
                         .addComponent(btnModificarListaRP, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEliminarListaRP, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Editar/Eliminar listas", jPanel9);
@@ -722,10 +731,59 @@ public class frameMain extends javax.swing.JFrame {
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 319, Short.MAX_VALUE)
+            .addGap(0, 326, Short.MAX_VALUE)
         );
 
         jTabbedPane3.addTab("Ver listas", jPanel11);
+
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnReproducir.setText("Reproducir");
+        btnReproducir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnReproducirMouseClicked(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pbReproduccion, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                    .addComponent(btnReproducir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(pbReproduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54)
+                .addComponent(btnReproducir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Reproduccion de musica", jPanel13);
 
         javax.swing.GroupLayout dialogClientesLayout = new javax.swing.GroupLayout(dialogClientes.getContentPane());
         dialogClientes.getContentPane().setLayout(dialogClientesLayout);
@@ -1061,6 +1119,16 @@ public class frameMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCrearCancionMouseClicked
 
+    private void btnReproducirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReproducirMouseClicked
+            ab = new adminBarra(pbReproduccion, 0, jPanel1);
+            pbReproduccion.setMaximum(7);
+            UIManager.put("nimbusOrange", Color.YELLOW);
+            ab.setVive(true);
+            ab.setTiempo(6);
+            ab.start();
+            
+    }//GEN-LAST:event_btnReproducirMouseClicked
+
     public DefaultComboBoxModel actualizarComboBoxLanzamientos() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (Lanzamiento lanzamiento : lanzamientos) {
@@ -1247,6 +1315,7 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnRegisterArtist;
     private javax.swing.JButton btnRegisterClient;
+    private javax.swing.JButton btnReproducir;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbAlbumes;
     private javax.swing.JComboBox<String> cbLanzamientos;
@@ -1260,6 +1329,9 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JDialog dialogArtistas;
     private javax.swing.JDialog dialogClientes;
     private javax.swing.JDialog dialogRegister;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1290,6 +1362,7 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1302,6 +1375,7 @@ public class frameMain extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JProgressBar pbReproduccion;
     private javax.swing.JPasswordField pwfContraseñaArtista;
     private javax.swing.JPasswordField pwfContraseñaCliente;
     private javax.swing.JPasswordField pwfPassword;
